@@ -1,47 +1,29 @@
-import {
-  Controller,
-  Get,
-  Req,
-  Query,
-  Put,
-  Delete,
-  Param,
-  HttpCode,
-} from '@nestjs/common';
-import { type Request } from 'express';
+import { Controller, Get, Post, Delete, Param, Body } from '@nestjs/common';
+import { ProductsService } from './products.service';
+import { CreateProductDTO } from './dto/create-product.dto';
+import { type Product } from './interfaces/product.interface';
 
-interface GetProductsQueryDto {
-  page?: number;
-  limit?: number;
-}
 @Controller('products')
 export class ProductsController {
+  constructor(private productService: ProductsService) {}
+
+  @Post()
+  async create(@Body() product: CreateProductDTO): Promise<Product[]> {
+    return this.productService.create(product);
+  }
+
   @Get()
-  getAllProducts(
-    @Req()
-    request: Request,
-    @Query() query: GetProductsQueryDto,
-  ) {
-    return { msg: 'FIND ALL', ...query };
+  async find(): Promise<Product[]> {
+    return this.productService.findAll();
   }
 
-  @Put(':id')
-  update(@Param('id') id: number): string {
-    return 'UPDATE ENDPOINT ' + id;
-  }
-
-  @Delete()
-  delete(): string {
-    return 'DELETE ENDPOINT';
-  }
-
-  @Get('ab*cd')
-  pattern(): string {
-    return 'PATTERN MATCHED';
-  }
   @Get(':id')
-  @HttpCode(203)
-  findOne(@Param('id') id: string): string {
-    return `FIND ONE ENDPOINT ${id}`;
+  async findOne(@Param() params: string[]): Promise<Product | undefined> {
+    return this.productService.findOne(Number(params['id']));
+  }
+
+  @Delete(':id')
+  async delete(@Param() params: string[]): Promise<Product[]> {
+    return this.productService.delete(Number(params['id']));
   }
 }

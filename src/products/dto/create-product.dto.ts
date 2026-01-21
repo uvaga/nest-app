@@ -2,9 +2,6 @@ import { IsInt, IsNotEmpty, IsNumber, IsString, Min } from 'class-validator';
 
 export class CreateProductDTO {
   @IsNotEmpty()
-  @IsInt()
-  readonly id: number;
-  @IsNotEmpty()
   @IsString()
   readonly name: string;
   @IsNotEmpty()

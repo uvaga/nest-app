@@ -14,7 +14,6 @@ import { CreateProductDTO } from './dto/create-product.dto';
 import { type Product } from './interfaces/product.interface';
 import { HttpExceptionFilter } from '../common/filters/http-exception.filter';
 import { TransformInterceptor } from '../common/interceptors/transform/transform.interceptor';
-import { DeleteResult } from 'typeorm';
 import { UpdateProductDTO } from './dto/update-product.dto';
 
 @Controller('products')
@@ -37,7 +36,7 @@ export class ProductsController {
     return await this.productService.findOne(+id);
   }
   @Delete(':id')
-  async delete(@Param('id') id): Promise<DeleteResult> {
+  async delete(@Param('id') id): Promise<Product> {
     return await this.productService.delete(+id);
   }
 

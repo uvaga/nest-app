@@ -4,14 +4,14 @@ import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 export class ProductDetailsEntity {
   @PrimaryGeneratedColumn()
   id: number;
-  @Column({ length: 45 })
+  @Column({ length: 45, nullable: true })
   partNumber: string;
-  @Column({ length: 45 })
+  @Column({ length: 45, nullable: true })
   dimension: string;
-  @Column('float')
+  @Column('float', { nullable: true })
   weight: number;
-  @Column({ length: 45 })
+  @Column({ length: 45, nullable: true })
   manufacturer: string;
-  @Column({ length: 45 })
+  @Column({ length: 45, nullable: true })
   origin: string;
 }

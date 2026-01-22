@@ -7,6 +7,8 @@ import { LoggerMiddleware } from './common/middlewares/logger/logger.middleware'
 import { ProductsController } from './products/products.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { DataSource } from 'typeorm';
+import { UsersModule } from './users/users.module';
+import { PhotosModule } from './photos/photos.module';
 import databaseConfig from './config/database.config';
 import appConfig from './config/app.config';
 
@@ -32,6 +34,8 @@ import appConfig from './config/app.config';
       }),
     }),
     ProductsModule,
+    UsersModule,
+    PhotosModule,
   ],
   controllers: [AppController],
   providers: [AppService],

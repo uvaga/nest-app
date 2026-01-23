@@ -9,6 +9,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { DataSource } from 'typeorm';
 import { UsersModule } from './users/users.module';
 import { PhotosModule } from './photos/photos.module';
+import { QuizModule } from './quiz/quiz.module';
 import databaseConfig from './config/database.config';
 import appConfig from './config/app.config';
 
@@ -36,6 +37,7 @@ import appConfig from './config/app.config';
     ProductsModule,
     UsersModule,
     PhotosModule,
+    QuizModule,
   ],
   controllers: [AppController],
   providers: [AppService],

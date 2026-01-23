@@ -24,6 +24,6 @@ export class TransformInterceptor<T> implements NestInterceptor<
     // map the response into data property
     // console.log(next.handle());
     console.log('before ....');
-    return next.handle().pipe(map((data) => ({ data: data })));
+    return next.handle().pipe(map((data: T) => ({ data })));
   }
 }
